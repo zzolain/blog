@@ -5,6 +5,18 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import {css} from '@emotion/react';
+
+const titleStyle = css`
+  color: var(--color-heading);
+`
+const dateStyle = css`
+  color: var(--color-text-light);
+`;
+const textStyle = css`
+  color: var(--color-text);
+`
+
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
@@ -24,7 +36,7 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO title="All posts" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
@@ -38,22 +50,23 @@ const BlogIndex = ({ data, location }) => {
                 itemScope
                 itemType="http://schema.org/Article"
               >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
+                <Link to={post.fields.slug} itemProp="url">
+                  <header>
+                    <h2>
+                      <span css={titleStyle} itemProp="headline">{title}</span>
+                    </h2>
+                    <small css={dateStyle}>{post.frontmatter.date}</small>
+                  </header>
+                  <section>
+                    <p
+                      css={textStyle}
+                      dangerouslySetInnerHTML={{
+                        __html: post.frontmatter.description || post.excerpt,
+                      }}
+                      itemProp="description"
+                    />
+                  </section>
+                </Link>
               </article>
             </li>
           )

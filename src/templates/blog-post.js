@@ -1,9 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import {css} from '@emotion/react';
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+
+const postStyle = css`
+  white-space: pre-wrap;
+`;
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -26,6 +31,7 @@ const BlogPostTemplate = ({ data, location }) => {
           <p>{post.frontmatter.date}</p>
         </header>
         <section
+          css={postStyle}
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />

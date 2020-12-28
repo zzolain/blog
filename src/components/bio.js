@@ -8,6 +8,12 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import {css} from '@emotion/react';
+
+const stacksStyle = css`
+  white-space: pre-wrap;
+  font-size: var(--fontSize-0);
+`;
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -24,6 +30,7 @@ const Bio = () => {
           author {
             name
             summary
+            stacks
           }
           social {
             twitter
@@ -52,13 +59,24 @@ const Bio = () => {
         />
       )}
       {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
-          </a>
-        </p>
+        <div>
+          <p>
+          <strong>{author.name}</strong>
+          </p>
+          <p>
+            {author?.summary || null}
+            {` `}
+          </p>
+          <p css={stacksStyle}>
+            {author?.stacks || null}
+            {` `}
+          </p>
+          <div>
+            <a href={`https://github.com/${social?.github || ``}`}>
+              Github
+            </a>
+          </div>
+        </div>
       )}
     </div>
   )
