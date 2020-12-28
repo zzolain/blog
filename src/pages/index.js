@@ -37,7 +37,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" />
+      <SEO title="모든" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
