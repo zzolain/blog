@@ -31,7 +31,7 @@
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
     Times, serif;
-  --font-body: var(--fontFamily-serif);
+  --font-body: var(--fontFamily-sans);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
@@ -101,8 +101,8 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  margin-top: var(--spacing-12);
-  margin-bottom: var(--spacing-6);
+  margin-top: var(--spacing-8);
+  margin-bottom: var(--spacing-8);
   line-height: var(--lineHeight-tight);
   letter-spacing: -0.025em;
 }
@@ -179,20 +179,16 @@ ol {
 ul li,
 ol li {
   padding-left: var(--spacing-0);
-  margin-bottom: calc(var(--spacing-8) / 2);
+  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 li > p {
-  margin-bottom: calc(var(--spacing-8) / 2);
-}
-
-li *:last-child {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 li > ul {
   margin-left: var(--spacing-8);
-  margin-top: calc(var(--spacing-8) / 2);
+  margin-top: calc(var(--spacing-4) / 2);
 }
 
 blockquote {
@@ -275,7 +271,7 @@ a:focus {
 }
 
 .post-list-item header {
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-2);
 }
 
 .header-link-home {
@@ -318,6 +314,12 @@ a:focus {
   margin-bottom: var(--spacing-8);
 }
 
+.gatsby-resp-image-figcaption {
+  text-align: center;
+  font-size: var(--fontSize-0);
+  color: var(--color-text-light);
+}
+
 /* Media queries */
 
 @media (max-width: 42rem) {
@@ -327,9 +329,13 @@ a:focus {
   }
   ul,
   ol {
-    list-style-position: inside;
+    margin-left: var(--spacing-4);
   }
   .global-wrapper {
     padding: var(--spacing-5) var(--spacing-5);
+  }
+  .gatsby-resp-image-figure {
+    margin-inline-start: var(--spacing-0);
+    margin-inline-end: var(--spacing-0);
   }
 }

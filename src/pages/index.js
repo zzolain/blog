@@ -14,7 +14,8 @@ const dateStyle = css`
   color: var(--color-text-light);
 `;
 const textStyle = css`
-  color: var(--color-text);
+  font-size: var(--fontSize-1);
+  color: var(--color-text-light);
 `
 
 const BlogIndex = ({ data, location }) => {
@@ -42,7 +43,6 @@ const BlogIndex = ({ data, location }) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
-
           return (
             <li key={post.fields.slug}>
               <article
@@ -68,6 +68,7 @@ const BlogIndex = ({ data, location }) => {
                   </section>
                 </Link>
               </article>
+              <hr />
             </li>
           )
         })}
