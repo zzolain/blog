@@ -23,7 +23,7 @@ export class PostFirebaseRepositoryImpl implements PostRepository {
     return new Post(
       snapshot.id,
       document.title,
-      document.createdAt.toDate(),
+      document.createdAt.toDate().toString(),
       document.description,
       document.body,
       document.tags

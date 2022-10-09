@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 import meta from "../meta";
-import Bio from "./bio";
+import Bio from "./Bio";
 import Link from "next/link";
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
