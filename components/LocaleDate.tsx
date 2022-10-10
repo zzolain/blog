@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const LocaleDate: FC<{ date: string; format?: string }> = ({
   date,
@@ -7,7 +7,7 @@ const LocaleDate: FC<{ date: string; format?: string }> = ({
 }) => {
   const [localeDate, setLocalDate] = useState("");
   useEffect(() => {
-    setLocalDate(moment(date).format(format));
+    setLocalDate(dayjs(date).format(format));
   }, [date, format]);
   return <span>{localeDate}</span>;
 };
