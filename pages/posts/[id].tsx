@@ -57,6 +57,45 @@ const PostView: FC<Props> = (props: Props) => {
       {/*    </li>*/}
       {/*  </ul>*/}
       {/*</nav>*/}
+      <style global jsx>
+        {`
+          code.hljs {
+            border-radius: 10px;
+          }
+          code {
+            background-color: #f5f2f0;
+            padding: 0.1em 0.3em;
+            border-radius: 0.3em;
+          }
+        `}
+      </style>
+      <style jsx>
+        {`
+          .blog-post header h1 {
+            margin: var(--spacing-0) var(--spacing-0) var(--spacing-4)
+              var(--spacing-0);
+          }
+
+          .blog-post header p {
+            font-size: var(--fontSize-2);
+            font-family: var(--font-heading);
+          }
+
+          .blog-post section {
+            margin-top: var(--spacing-12);
+            margin-bottom: var(--spacing-16);
+          }
+
+          .blog-post ul,
+          .blog-post ol {
+            margin-left: var(--spacing-6);
+          }
+
+          .blog-post-nav ul {
+            margin: var(--spacing-0);
+          }
+        `}
+      </style>
     </>
   );
 };
@@ -78,10 +117,11 @@ marked.setOptions({
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const NOT_FOUND = { notFound: true };
-  if (typeof context.params?.id !== "string") return NOT_FOUND;
+  const id = Number(context.params?.id);
+  if (!id) return NOT_FOUND;
   const interactor = new PostInteractor();
   try {
-    const post = await interactor.get(context.params.id);
+    const post = await interactor.get(id);
     return {
       props: {
         post: JSON.parse(JSON.stringify(post)),

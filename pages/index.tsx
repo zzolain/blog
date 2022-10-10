@@ -11,7 +11,6 @@ type Props = {
 
 const Home: NextPage<Props> = (props: Props) => {
   const { posts } = props;
-
   return (
     <>
       <Seo title="홈" />
@@ -87,6 +86,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (e) {
+    console.log(e);
     return NOT_FOUND;
   }
 }

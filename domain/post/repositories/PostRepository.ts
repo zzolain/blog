@@ -1,6 +1,6 @@
 import { Post } from "../entities/post";
 
 export interface PostRepository {
-  get(id: string): Promise<Post>;
+  get(id: number): Promise<Post>;
   getList(): Promise<Post[]>;
 }
