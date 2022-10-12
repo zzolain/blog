@@ -5,3 +5,6 @@ Developer Jinsol's blog - https://jinsol.kim
 - TypeScript
 - ReactJS
 - NextJS
+- Prisma
+- MySQL
+- Oracle Cloud
