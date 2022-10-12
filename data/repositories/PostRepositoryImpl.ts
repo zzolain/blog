@@ -1,27 +1,27 @@
 import { PostRepository } from "../../domain/post/repositories/PostRepository";
 import { Post } from "../../domain/post/entities/post";
 import { PrismaClient } from "@prisma/client";
+import { ParseToEntity } from "../model/PostData";
 
 const prisma = new PrismaClient();
 
-prisma.$on("query", (e: any) => {
-  console.log("??", e);
-});
-
 export class PostRepositoryImpl implements PostRepository {
   async get(id: number): Promise<Post> {
-    return await prisma.posts.findUnique({
+    const data = await prisma.postData.findUnique({
       where: {
         id: id as number,
       },
     });
+    if (!data) throw new Error("해당 데이터가 없습니다.");
+    return ParseToEntity(data);
   }
 
   async getList(): Promise<Post[]> {
-    return await prisma.posts.findMany({
+    const data = await prisma.postData.findMany({
       orderBy: {
-        created_at: "desc",
+        createdAt: "desc",
       },
     });
+    return data.map((post) => ParseToEntity(post));
   }
 }

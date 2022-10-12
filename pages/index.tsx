@@ -25,7 +25,10 @@ const Home: NextPage<Props> = (props: Props) => {
                       <span>{post.title}</span>
                     </h2>
                     <small>
-                      <LocaleDate date={post.createdAt} />
+                      <LocaleDate
+                        date={post.createdAt}
+                        format="MMMM DD, YYYY"
+                      />
                     </small>
                   </header>
                   <section>

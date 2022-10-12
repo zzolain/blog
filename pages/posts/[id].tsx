@@ -21,8 +21,13 @@ const PostView: FC<Props> = (props: Props) => {
       <article className="blog-post">
         <header>
           <h2>{post.title}</h2>
-          <p>
+          <p className="date">
             <LocaleDate date={post.createdAt} />
+          </p>
+          <p className="tags">
+            {post.tags.map((tag) => (
+              <span key={tag}>#{tag}</span>
+            ))}
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: marked(post.body) }} />
@@ -76,9 +81,14 @@ const PostView: FC<Props> = (props: Props) => {
               var(--spacing-0);
           }
 
-          .blog-post header p {
+          .blog-post header .date {
             font-size: var(--fontSize-2);
             font-family: var(--font-heading);
+          }
+          .blog-post header .tags {
+            display: flex;
+            font-size: var(--fontSize-0);
+            column-gap: 0.4em;
           }
 
           .blog-post section {
@@ -128,6 +138,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   } catch (e) {
+    console.error(e);
     return NOT_FOUND;
   }
 }
