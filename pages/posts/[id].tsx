@@ -24,18 +24,26 @@ const PostView: FC<Props> = (props: Props) => {
           <p className="date">
             <LocaleDate date={post.createdAt} />
           </p>
-          <p className="tags">
-            {post.tags.map((tag) => (
-              <span key={tag}>#{tag}</span>
-            ))}
-          </p>
+          {post.description.length && (
+            <p className="description">{post.description}</p>
+          )}
+          {post.tags.length && (
+            <p className="tags">
+              {post.tags.map((tag) => (
+                <span key={tag}>#{tag}</span>
+              ))}
+            </p>
+          )}
         </header>
         <section dangerouslySetInnerHTML={{ __html: marked(post.body) }} />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <p className="bottom-date">
+          <LocaleDate date={post.createdAt} />
+        </p>
       </article>
+      <hr />
+      <footer>
+        <Bio />
+      </footer>
       {/*<nav className="blog-post-nav">*/}
       {/*  <ul*/}
       {/*    style={{*/}
@@ -69,8 +77,12 @@ const PostView: FC<Props> = (props: Props) => {
           }
           code {
             background-color: #f5f2f0;
-            padding: 0.1em 0.3em;
+            padding: 0;
             border-radius: 0.3em;
+          }
+          section p {
+            font-size: var(--fontSize-1);
+            white-space: pre-wrap;
           }
         `}
       </style>
@@ -84,16 +96,22 @@ const PostView: FC<Props> = (props: Props) => {
           .blog-post header .date {
             font-size: var(--fontSize-2);
             font-family: var(--font-heading);
+            margin-bottom: var(--spacing-8);
           }
           .blog-post header .tags {
             display: flex;
             font-size: var(--fontSize-0);
+            color: var(--color-text-light);
             column-gap: 0.4em;
+          }
+          .blog-post header .description {
+            font-size: var(--fontSize-1);
+            margin-bottom: var(--spacing-1);
           }
 
           .blog-post section {
-            margin-top: var(--spacing-12);
-            margin-bottom: var(--spacing-16);
+            margin-top: var(--spacing-10);
+            margin-bottom: var(--spacing-14);
           }
 
           .blog-post ul,
@@ -103,6 +121,10 @@ const PostView: FC<Props> = (props: Props) => {
 
           .blog-post-nav ul {
             margin: var(--spacing-0);
+          }
+          .bottom-date {
+            text-align: right;
+            font-size: var(--fontSize-0);
           }
         `}
       </style>

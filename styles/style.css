@@ -40,7 +40,7 @@
   --fontWeight-bold: 700;
   --fontWeight-extrabold: 800;
   --fontWeight-black: 900;
-  --fontSize-root: 16px;
+  --fontSize-root: 15px;
   --lineHeight-none: 1;
   --lineHeight-tight: 1.25;
   --lineHeight-normal: 1.5;
@@ -103,7 +103,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  margin-top: var(--spacing-12);
+  margin-top: var(--spacing-10);
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
   word-break: keep-all;
@@ -169,20 +169,20 @@ ol {
 ul li,
 ol li {
   padding-left: var(--spacing-0);
-  margin-bottom: calc(var(--spacing-4) / 2);
+  margin-bottom: calc(var(--spacing-2) / 2);
 }
 
 li > p {
-  margin-bottom: calc(var(--spacing-8) / 2);
+  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 li *:last-child {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: var(--spacing-4);
 }
 
 li > ul {
-  margin-left: var(--spacing-8);
-  margin-top: calc(var(--spacing-8) / 2);
+  margin-left: var(--spacing-6);
+  margin-top: calc(var(--spacing-4) / 2);
 }
 
 blockquote {

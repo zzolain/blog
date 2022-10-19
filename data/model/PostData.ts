@@ -16,6 +16,6 @@ export function ParseToEntity(data: PostData): Post {
     new Date(data.createdAt),
     data.description,
     data.body,
-    Array.from(new Set(data.tags.split(",")))
+    Array.from(new Set(data.tags.split(",").map((tag) => tag.trim())))
   );
 }

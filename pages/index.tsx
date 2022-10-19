@@ -51,6 +51,9 @@ const Home: NextPage<Props> = (props: Props) => {
             margin-bottom: var(--spacing-8);
             margin-top: var(--spacing-8);
           }
+          .post-list-item:hover {
+            cursor: pointer;
+          }
 
           .post-list-item h2 {
             font-size: var(--fontSize-4);

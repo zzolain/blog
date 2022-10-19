@@ -1,5 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const LocaleDate: FC<{ date: Date; format?: string }> = ({
   date,
@@ -7,7 +11,7 @@ const LocaleDate: FC<{ date: Date; format?: string }> = ({
 }) => {
   const [localeDate, setLocalDate] = useState("");
   useEffect(() => {
-    setLocalDate(dayjs(date).format(format));
+    setLocalDate(dayjs(date).tz("Asia/Seoul").format(format));
   }, [date, format]);
   return <span>{localeDate}</span>;
 };
