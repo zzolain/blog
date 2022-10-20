@@ -84,6 +84,9 @@ const PostView: FC<Props> = (props: Props) => {
             font-size: var(--fontSize-1);
             white-space: pre-wrap;
           }
+          section img {
+            max-width: 100%;
+          }
         `}
       </style>
       <style jsx>
