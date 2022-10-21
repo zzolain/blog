@@ -76,6 +76,7 @@ const PostView: FC<Props> = (props: Props) => {
             border-radius: 10px;
           }
           code {
+            word-break: break-word;
             background-color: #f5f2f0;
             padding: 0;
             border-radius: 0.3em;
