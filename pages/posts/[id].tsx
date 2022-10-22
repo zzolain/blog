@@ -20,7 +20,7 @@ const PostView: FC<Props> = (props: Props) => {
       <Seo title={post.title} description={post.description} />
       <article className="blog-post">
         <header>
-          <h2>{post.title}</h2>
+          <h1>{post.title}</h1>
           <p className="date">
             <LocaleDate date={post.createdAt} />
           </p>
@@ -87,6 +87,10 @@ const PostView: FC<Props> = (props: Props) => {
           }
           section img {
             max-width: 100%;
+          }
+          ul,
+          ol {
+            margin-left: var(--spacing-5);
           }
         `}
       </style>
