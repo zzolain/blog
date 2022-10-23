@@ -4,13 +4,16 @@ import { PostInteractor } from "../interactor/postInteractor";
 import { Post } from "../domain/post/entities/post";
 import Seo from "../components/Seo";
 import LocaleDate from "../components/LocaleDate";
+import { initFirebaseAnalytics } from "../util/firebase";
+
+initFirebaseAnalytics();
 
 type Props = {
   posts: Post[];
 };
-
 const Home: NextPage<Props> = (props: Props) => {
   const { posts } = props;
+
   return (
     <>
       <Seo title="홈" />
