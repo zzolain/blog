@@ -1,7 +1,7 @@
 import { Post } from "../../domain/post/entities/post";
 
 export declare type PostData = {
-  id: number;
+  id: string;
   title: string;
   createdAt: Date;
   body: string;

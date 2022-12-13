@@ -10,7 +10,7 @@ export class PostInteractor {
     this.usecase = new PostUsecase(repository);
   }
 
-  async get(id: number): Promise<Post> {
+  async get(id: string): Promise<Post> {
     return this.usecase.get(id);
   }
 

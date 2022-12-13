@@ -8,7 +8,7 @@ export class PostUsecase {
     this.repository = repository;
   }
 
-  get(id: number): Promise<Post> {
+  get(id: string): Promise<Post> {
     return this.repository.get(id);
   }
 

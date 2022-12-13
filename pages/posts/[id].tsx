@@ -24,7 +24,7 @@ const PostView: FC<Props> = (props: Props) => {
           <p className="date">
             <LocaleDate date={post.createdAt} />
           </p>
-          {post.description.length && (
+          {post.description.length > 0 && (
             <p className="description">{post.description}</p>
           )}
           {post.tags.length && (
@@ -157,11 +157,11 @@ marked.setOptions({
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const NOT_FOUND = { notFound: true };
-  const id = Number(context.params?.id);
+  const id = context.params?.id;
   if (!id) return NOT_FOUND;
   const interactor = new PostInteractor();
   try {
-    const post = await interactor.get(id);
+    const post = await interactor.get(`${id}`);
     return {
       props: {
         post: JSON.parse(JSON.stringify(post)),

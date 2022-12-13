@@ -1,5 +1,5 @@
 export class Post {
-  id: number;
+  id: string;
   title: string;
   createdAt: Date;
   description: string;
@@ -7,7 +7,7 @@ export class Post {
   tags: string[];
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     createdAt: Date,
     description: string,
