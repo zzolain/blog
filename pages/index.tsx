@@ -35,7 +35,7 @@ const Home: NextPage<Props> = (props: Props) => {
                     </small>
                   </header>
                   <section>
-                    <p>{post.description}</p>
+                    <p>{post.subTitle}</p>
                   </section>
                 </article>
               </Link>

@@ -14,8 +14,8 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         {isRootPath ? (
           <Bio />
         ) : (
-          <Link href="/">
-            <a className="header-link-home">{meta.title}</a>
+          <Link className="header-link-home" href="/">
+            {meta.title}
           </Link>
         )}
       </header>

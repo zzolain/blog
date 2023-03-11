@@ -6,8 +6,9 @@ import Bio from "../../components/Bio";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import { marked } from "marked";
 import hljs from "highlight.js";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import LocaleDate from "../../components/LocaleDate";
+import { getAllPostIds } from "../../data/PostLoader";
 
 type Props = {
   post: Post;
@@ -17,15 +18,15 @@ const PostView: FC<Props> = (props: Props) => {
   const { post } = props;
   return (
     <>
-      <Seo title={post.title} description={post.description} />
+      <Seo title={post.title} description={post.subTitle} />
       <article className="blog-post">
         <header>
           <h1>{post.title}</h1>
           <p className="date">
             <LocaleDate date={post.createdAt} />
           </p>
-          {post.description.length > 0 && (
-            <p className="description">{post.description}</p>
+          {post.subTitle.length > 0 && (
+            <p className="description">{post.subTitle}</p>
           )}
           {post.tags.length && (
             <p className="tags">
@@ -35,7 +36,7 @@ const PostView: FC<Props> = (props: Props) => {
             </p>
           )}
         </header>
-        <section dangerouslySetInnerHTML={{ __html: marked(post.body) }} />
+        <section dangerouslySetInnerHTML={{ __html: post.body }} />
         <p className="bottom-date">
           <LocaleDate date={post.createdAt} />
         </p>
@@ -155,22 +156,28 @@ marked.setOptions({
   xhtml: false,
 });
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticPaths() {
+  const paths = getAllPostIds();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: GetStaticPropsContext) {
   const NOT_FOUND = { notFound: true };
-  const id = context.params?.id;
+  const id = String(context.params?.id);
   if (!id) return NOT_FOUND;
+
   const interactor = new PostInteractor();
-  try {
-    const post = await interactor.get(`${id}`);
-    return {
-      props: {
-        post: JSON.parse(JSON.stringify(post)),
-      },
-    };
-  } catch (e) {
-    console.error(e);
-    return NOT_FOUND;
-  }
+
+  const post = await interactor.get(id);
+
+  return {
+    props: {
+      post: JSON.parse(JSON.stringify(post)),
+    },
+  };
 }
 
 export default PostView;

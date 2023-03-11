@@ -2,7 +2,7 @@ export class Post {
   id: string;
   title: string;
   createdAt: Date;
-  description: string;
+  subTitle: string;
   body: string;
   tags: string[];
 
@@ -10,14 +10,14 @@ export class Post {
     id: string,
     title: string,
     createdAt: Date,
-    description: string,
+    subTitle: string,
     body: string,
     tags: string[]
   ) {
     this.id = id;
     this.title = title;
     this.createdAt = createdAt;
-    this.description = description;
+    this.subTitle = subTitle;
     this.body = body;
     this.tags = tags;
   }
