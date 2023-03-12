@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Post } from "../../domain/post/entities/post";
-import { PostInteractor } from "../../interactor/postInteractor";
 import Seo from "../../components/Seo";
 import Bio from "../../components/Bio";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
@@ -9,6 +8,7 @@ import hljs from "highlight.js";
 import { GetStaticPropsContext } from "next";
 import LocaleDate from "../../components/LocaleDate";
 import { getAllPostIds } from "../../data/PostLoader";
+import { PostUseCase } from "../../domain/post/usecases/postUseCase";
 
 type Props = {
   post: Post;
@@ -169,9 +169,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const id = String(context.params?.id);
   if (!id) return NOT_FOUND;
 
-  const interactor = new PostInteractor();
+  const postUseCase = new PostUseCase();
 
-  const post = await interactor.get(id);
+  const post = await postUseCase.get(id);
 
   return {
     props: {

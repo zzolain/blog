@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { PostInteractor } from "../interactor/postInteractor";
 import { Post } from "../domain/post/entities/post";
 import Seo from "../components/Seo";
 import LocaleDate from "../components/LocaleDate";
 import { initFirebaseAnalytics } from "../util/firebase";
+import { PostUseCase } from "../domain/post/usecases/postUseCase";
 
 initFirebaseAnalytics();
 
@@ -86,9 +86,9 @@ const Home: NextPage<Props> = (props: Props) => {
 
 export async function getServerSideProps() {
   const NOT_FOUND = { notFound: true };
-  const interactor = new PostInteractor();
+  const postUseCase = new PostUseCase();
   try {
-    const posts = await interactor.getList();
+    const posts = await postUseCase.getList();
     return {
       props: {
         posts: JSON.parse(JSON.stringify(posts)),
