@@ -1,11 +1,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { isNotJunk } from "junk";
 
 const directory = path.join(process.cwd(), "assets/posts");
 
 export function getSortedPostsData() {
-  const folderNames = fs.readdirSync(directory);
+  const folderNames = fs.readdirSync(directory).filter(isNotJunk);
   const allPostsData = folderNames.map((folderName) => {
     const id = folderName;
     const fullPath = path.join(directory, `${folderName}/index.md`);
