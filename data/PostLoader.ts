@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { isNotJunk } from "junk";
 
-const directory = path.join(process.cwd(), "assets/posts");
+const directory = path.join(process.cwd(), "public/assets/posts");
 
 export function getSortedPostsData() {
   const folderNames = fs.readdirSync(directory).filter(isNotJunk);
